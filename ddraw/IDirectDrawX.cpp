@@ -2597,6 +2597,10 @@ void m_IDirectDrawX::SetD3DDevice(m_IDirect3DDeviceX *D3DDevice)
 	D3DDeviceInterface = D3DDevice;
 }
 
+#include <cguid.h>
+#include <d3d12sdklayers.h>
+#include <atlbase.h>
+#pragma comment(lib, "D3D12.lib")
 HRESULT m_IDirectDrawX::CheckInterface(char *FunctionName, bool CheckD3DDevice)
 {
 	// Check for object, if not then create it
@@ -2608,6 +2612,14 @@ HRESULT m_IDirectDrawX::CheckInterface(char *FunctionName, bool CheckD3DDevice)
 			LOG_LIMIT(100, FunctionName << " Error: d3d9 object not setup!");
 			return DDERR_GENERIC;
 		}
+
+		CComPtr<ID3D12Debug> spDebugController0;
+		CComPtr<ID3D12Debug1> spDebugController1;
+		D3D12GetDebugInterface(IID_PPV_ARGS(&spDebugController0));
+		spDebugController0->QueryInterface(IID_PPV_ARGS(&spDebugController1));
+		//spDebugController0->EnableDebugLayer();
+		spDebugController1->EnableDebugLayer();
+		spDebugController1->SetEnableGPUBasedValidation(true);
 	}
 
 	// Check for device, if not then create it

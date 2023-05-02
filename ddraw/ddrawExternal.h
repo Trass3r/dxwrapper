@@ -54,6 +54,7 @@ namespace DdrawWrapper
 	VISIT_PROCS_DDRAW_SHARED(EXPORT_OUT_WRAPPED_PROC);
 	extern FARPROC Direct3DCreate9_out;
 	extern FARPROC Direct3DCreate9Ex_out;
+	extern FARPROC Direct3DCreate9On12_out;
 }
 
 #undef DECLARE_IN_WRAPPED_PROC

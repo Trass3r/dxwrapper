@@ -401,6 +401,7 @@ bool APIENTRY DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
 				HMODULE d3d9_dll = LoadLibrary("d3d9.dll");
 				DdrawWrapper::Direct3DCreate9_out = GetProcAddress(d3d9_dll, "Direct3DCreate9");
 				DdrawWrapper::Direct3DCreate9Ex_out = GetProcAddress(d3d9_dll, "Direct3DCreate9Ex");
+				DdrawWrapper::Direct3DCreate9On12_out = GetProcAddress(d3d9_dll, "Direct3DCreate9On12");
 			}
 
 			// Add DDrawCompat to the chain

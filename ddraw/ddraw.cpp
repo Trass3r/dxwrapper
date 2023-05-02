@@ -51,6 +51,7 @@ namespace DdrawWrapper
 	VISIT_PROCS_DDRAW_SHARED(INITIALIZE_WRAPPED_PROC);
 	FARPROC Direct3DCreate9_out = nullptr;
 	FARPROC Direct3DCreate9Ex_out = nullptr;
+	FARPROC Direct3DCreate9On12_out = nullptr;
 }
 
 using namespace DdrawWrapper;
@@ -481,6 +482,8 @@ HRESULT CreateD3D9(LPDIRECT3D9& d3d9Object, LPDIRECT3D9EX& d3d9ObjectEx)
 	// Declare Direct3DCreate9
 	static Direct3DCreate9Proc Direct3DCreate9 = reinterpret_cast<Direct3DCreate9Proc>(Direct3DCreate9_out);
 	static Direct3DCreate9ExProc Direct3DCreate9Ex = reinterpret_cast<Direct3DCreate9ExProc>(Direct3DCreate9Ex_out);
+	using PFN_Direct3DCreate9On12 = IDirect3D9* (WINAPI*)(UINT SDKVersion, void* pOverrideList, UINT NumOverrideEntries);
+	auto Direct3DCreate9On12 = reinterpret_cast<PFN_Direct3DCreate9On12>(Direct3DCreate9On12_out);
 
 	if (!Direct3DCreate9)
 	{
@@ -519,7 +522,7 @@ HRESULT CreateD3D9(LPDIRECT3D9& d3d9Object, LPDIRECT3D9EX& d3d9ObjectEx)
 	}
 	else
 	{
-		d3d9Object = Direct3DCreate9(D3D_SDK_VERSION);
+		d3d9Object = Direct3DCreate9On12(D3D_SDK_VERSION, nullptr, 0);
 	}
 
 	// Error creating Direct3D9
