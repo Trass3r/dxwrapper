@@ -3235,7 +3235,7 @@ HRESULT m_IDirectDrawSurfaceX::CreateD3d9Surface()
 	const DWORD Width = GetByteAlignedWidth(surfaceDesc2.dwWidth, surfaceBitCount);
 	const DWORD Height = surfaceDesc2.dwHeight;
 
-	Logging::LogDebug() << __FUNCTION__ " (" << this << ") D3d9 Surface. Size: " << Width << "x" << Height << " Format: " << surfaceFormat << " dwCaps: " << Logging::hex(surfaceDesc2.ddsCaps.dwCaps);
+	Logging::LogDebug() << __FUNCTION__ " (" << this << ") D3d9 Surface. Size: " << Width << 'x' << Height << " Format: " << surfaceFormat << " ddsCaps: " << surfaceDesc2.ddsCaps;
 
 	HRESULT hr = DD_OK;
 

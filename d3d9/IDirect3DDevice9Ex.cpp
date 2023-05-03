@@ -339,7 +339,7 @@ HRESULT m_IDirect3DDevice9Ex::CreateRenderTarget(THIS_ UINT Width, UINT Height, 
 
 HRESULT m_IDirect3DDevice9Ex::CreateTexture(THIS_ UINT Width, UINT Height, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DTexture9** ppTexture, HANDLE* pSharedHandle)
 {
-	Logging::LogDebug() << __FUNCTION__ << " (" << this << ")";
+	Logging::LogDebug() << __FUNCTION__ << " (" << this << ") " << Width << 'x' << Height << 'x' << Levels << ' ' << Usage << ' ' << Format << ' ' << Pool;
 
 	if (!ppTexture)
 	{
@@ -354,7 +354,7 @@ HRESULT m_IDirect3DDevice9Ex::CreateTexture(THIS_ UINT Width, UINT Height, UINT 
 		return D3D_OK;
 	}
 
-	Logging::LogDebug() << __FUNCTION__ << " FAILED! " << (D3DERR)hr << " " << Width << " " << Height << " " << Levels << " " << Usage << " " << Format << " " << Pool << " " << pSharedHandle;
+	Logging::LogDebug() << __FUNCTION__ << " FAILED! " << (D3DERR)hr;
 	return hr;
 }
 
