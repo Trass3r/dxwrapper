@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  UseMultiToolTask: true
+
 jobs:
   build:
     runs-on: windows-latest
